@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecom.dao.LoginMapper">
+
+    <select id="login" parameterType="com.ecom.entity.User" resultMap="login">
+        SELECT a.*,b.role_tac FROM user a LEFT JOIN role b ON a.role_id = b.role_id WHERE a.login_name = #{loginName} AND a.password = #{password}
+    </select>
+    <resultMap id="login" type="com.ecom.entity.Role">
+        <id column="role_id" jdbcType="INTEGER" property="roleId" />
+        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+        <result column="role_tac" jdbcType="LONGVARCHAR" property="roleTac" />
+        <result column="role_node" jdbcType="LONGVARCHAR" property="roleNode" />
+        <result column="role_cell" jdbcType="LONGVARCHAR" property="roleCell" />
+        <collection property="userList" ofType="com.ecom.entity.User">
+            <id column="user_id" property="userId"/>
+            <result column="user_name" property="userName"/>
+            <result column="login_name" property="loginName"/>
+            <result column="password" property="password"/>
+            <result column="flag" property="flag"/>
+        </collection>
+    </resultMap>
+</mapper>

@@ -1,0 +1,22 @@
+SRAN数据整理
+4G(LTE):
+        每15分钟出库一份all-counter文件，在WEB-INF/counter/allcounter下，此文件为cell下未计算过的初始counter的值
+        每天出库一份lte2_node_info文件，在WEB-INF/node_info/lte2_node_info下，此文件为基站的基础信息
+        每15分钟出库一份Lte1-alarm-list文件，在WEB-INF/alarm/Lte1-alarm-list下，此文件为cell下的告警信息
+        三个文件通过com.ecom.util.threadUtil.ThreadUtil来轮询扫描，单线程处理。
+        lte2_node_info和Lte1-alarm-list均为按行解析文件，分别由com.ecom.util.tacUtil.CounterUtil和com.ecom.util.tacUtil.AlarmUtil处理，插入数据库base_station和base_alarm表，逻辑较为简单，可参考代码。
+        主要说一下all-counter的处理：
+                由com.ecom.util.tacUtil.CounterUtil处理，首先清表base_tac、base_node、base_cell、temp，对文件逐行进行扫描，插入temp表（即temp表中为未计算的cell级别的数据）。
+                扫描的同时进行公式计算，将计算后的counter值插入base_cell表和counter表（同时调用modStatus和compare方法来与设置的门限值做对比，确定告警级别，即颜色）。
+                base_cell表为页面展示时的真正数据，counter表为cell级别的历史数据。
+                再对临时表temp做sum操作（按cell_name的前9位），得出node下的未计算counter值，通过公式计算，插入base_node和node表中，base-node为显示数据的表，node为历史数据表（同样计算status）。
+                最后对临时表temp，base_station表链表做sum操作（按base_station的tac），得出tac下的未计算counter值，通过公式计算，插入base_tac和tac表中，base_tac为显示数据的表，tac为历史数据表（同样计算status）。
+
+3G(WCDMA):
+        每15分钟出库多的xml数据，在WEB-INF/3g下
+        三个文件通过com.ecom.util.threadUtil.ThreadUtil来轮询扫描，线程池多线程处理。
+        com.ecom.util.threadUtil.ScanXmlRootAndCalculateCell3gThread为线程池的单个线程执行类。
+        调用com.ecom.util.rncUtil.XmlUtil中的方法进行解析，将数据解析后在进行计算处理，处理过程与4G一致（所对应表为带3G的表）。
+
+最后说一下门限值的设定表quota_threshold_cell（3g），quota_threshold_node（3g），quota_threshold_tac（rnc）分别是门限值设置表，分为三个指标，一个unit单位字段（判断是整数还是百分比），一个type字段判断是大于还是小于。
+    大于/小于门限3即为1级告警（红色），大于/小于门限2即为2级告警（紫色），大于/小于门限1即为3级告警（红色），都不匹配为正常（绿色）。

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--移动设备禁用缩放功能-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>无线网络智能管控平台</title>
+    <link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css" media="screen">
+    <link href="../plugin/bootstrap/css/bootstrap-select.css" rel="stylesheet"  type="text/css" media="screen">
+    <link rel="stylesheet" href="../plugin/bootstrap/css/font-awesome.css" />
+    <link href="../plugin/accordion/css/accordion.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../plugin/search-style/css/style.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../plugin/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="stylesheet" href="../plugin/leaflet/css/leaflet.css" />
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../plugin/leaflet/css/leaflet.ie.css"/>
+    <link rel="stylesheet" href="../plugin/leaflet/css/locate-ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../plugin/leaflet/css/locate.css" />
+    <link rel="stylesheet" href="../plugin/leaflet/css/leaflet.awesome-markers.css" />
+    <link rel="stylesheet" href="../plugin/leaflet/css/MarkerCluster.css" />
+    <link rel="stylesheet" href="../plugin/leaflet/css/MarkerCluster.Default.css" />
+    <link href="../css/common.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+<body>
+<div class="container-fluid background">
+    <div id="top" class="row vertical-container">
+        <div class="col-xs-10" style="color: #ffffff;"><div id="logo"></div><h3 style="margin-left: -14px;margin-top:26px;float: left">&nbsp;&nbsp;&nbsp;&nbsp;无线网络智能管控平台</h3></div>
+        <div id="admin" class="col-xs-1" align="center">
+            <div id="admin_img">
+            </div>
+            <div id="username" style="color: #ffffff;"></div>
+        </div>
+        <div id="setting" class="col-xs-1" align="center">
+            <div id="setting_img">
+            </div>
+            <div style="color: #ffffff;font-size:11px">设置</div>
+        </div>
+        <div class="col-xs-3 vertical-container" align="center" width="100%">
+            <div class="btn-group">
+                <!--<div style="float: left">
+                    <select id="sel" class="selectpicker" data-width="110px" multiple data-done-button="true">
+                        <optgroup label="请选择范围" data-min-options="1"  width="10">
+                            <option>TAC</option>
+                            <option>RNC</option>
+                        </optgroup>
+                    </select>
+                </div>-->
+                <button id="back" type="button" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                <button id="logout" type="button" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </div>
+    <div id="setting_middle" class="row" >
+        <div id="left_setting_img" class="col-xs-2" >
+            <div style="margin-top: 15px" >
+                <ul id="accordion" class="accordion" >
+                    <li>
+                        <div id="userSetting" data-src = "../html/userSetting.html" class="link_setting_left click" align="center" style="font-size: 15px;!important;">用户管理</div>
+                    </li>
+                    <li>
+                        <div id="roleSetting" data-src = "../html/roleSetting.html" class="link_setting_left" align="center" style="font-size: 15px;!important;">权限管理</div>
+                    </li>
+                    <li>
+                        <div id="rncQuotaSetting" data-src = "../html/rncQuotaSetting.html" class="link_setting_left" align="center" style="font-size: 15px;!important;">RNC门限管理</div>
+                    </li>
+                    <li>
+                        <div id="tacQuotaSetting" data-src = "../html/tacQuotaSetting.html" class="link_setting_left" align="center" style="font-size: 15px;!important;">TAC门限管理</div>
+                    </li>
+                    <li>
+                        <div id="nodeQuotaSetting" data-src = "../html/nodeQuotaSetting.html" class="link_setting_left" align="center" style="font-size: 15px;!important;">NODE门限管理</div>
+                    </li>
+                    <li>
+                        <div id="cellQuotaSetting" data-src = "../html/cellQuotaSetting.html" class="link_setting_left" align="center" style="font-size: 15px;!important;">CELL门限管理</div>
+                    </li>
+                    <li>
+                        <div id="nodeNameSetting" data-src = "../html/nodeNameSetting.html" class="link_setting_left" align="center" style="font-size: 15px;!important;">更新基站名称</div>
+                    </li>
+                    <li>
+                        <div id="userImportantSetting" data-src = "../html/userImportantSetting.html" class="link_setting_left" align="center" style="font-size: 15px;!important;">重点监测项管理</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--<div id="right_img" class="col-xs-3">-->
+            <!--<div id="right_div">-->
+                <!--<div id="right">-->
+                    <!--<ul id="accordion" class="accordion">-->
+                        <!--<li>-->
+                            <!--<div id="userSetting" data-src = "../html/userSetting.html" class="link click" align="center" style="font-size: 15px;!important;">用户管理</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div id="roleSetting" data-src = "../html/roleSetting.html" class="link" align="center" style="font-size: 15px;!important;">权限管理</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div id="tacQuotaSetting" data-src = "../html/tacQuotaSetting.html" class="link" align="center" style="font-size: 15px;!important;">TAC门限管理</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div id="nodeQuotaSetting" data-src = "../html/nodeQuotaSetting.html" class="link" align="center" style="font-size: 15px;!important;">NODE门限管理</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div id="cellQuotaSetting" data-src = "../html/cellQuotaSetting.html" class="link" align="center" style="font-size: 15px;!important;">CELL门限管理</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div id="nodeNameSetting" data-src = "../html/nodeNameSetting.html" class="link" align="center" style="font-size: 15px;!important;">更新基站名称</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="col-xs-10" id="setting_content">
+            <div style="height: 99.6%;width: 100%;">
+                <iframe id="iframe" name="content" frameborder="0" scrolling="no" width="100%" height="100%" style="border: none;overflow:hidden;" src="../html/userSetting.html"></iframe>
+            </div>
+        </div>
+    </div>
+    <!--<div id="footer" class="row vertical-container">-->
+        <!--<div class="col-xs-12 center">-->
+            <!--<div>故障等级：</div>-->
+            <!--<div id="footer_level1"></div>-->
+            <!--<div>一级</div>-->
+            <!--<div id="footer_level2"></div>-->
+            <!--<div>二级</div>-->
+            <!--<div id="footer_level3"></div>-->
+            <!--<div>三级</div>-->
+            <!--<div id="footer_level4"></div>-->
+            <!--<div>正常</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<script src="../plugin/jquery/js/jquery-3.1.1.min.js" ></script>
+<script src="../js/setSize.js" ></script>
+<script src="../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugin/bootstrap/js/bootstrap-select.js"></script>
+<script src="../plugin/accordion/js/accordion.js"></script>
+<script src="../plugin/perfect-scrollbar/js/jquery.mousewheel.js"></script>
+<script src="../plugin/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="../plugin/leaflet/js/leaflet.js"></script>
+<script src="../plugin/leaflet/js/proj4js-compressed.js"></script>
+<script src="../plugin/leaflet/js/proj4leaflet.js"></script>
+<script src="../plugin/leaflet/js/locate.js" ></script>
+<script src="../plugin/leaflet/js/leaflet.awesome-markers.js" ></script>
+<script src="../plugin/leaflet/js/oms.min.js"></script>
+<script src="../plugin/leaflet/js/leaflet.markercluster.js"></script>
+<script src="../plugin/leaflet/js/leaflet.featuregroup.subgroup.js"></script>
+
+<script src="../js/beijingData.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript" src="../js/socket.js"></script>
+<script src="../js/setting.js"></script>
+
+</body>
+</html>

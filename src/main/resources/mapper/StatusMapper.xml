@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecom.dao.StatusMapper">
+    <select id="getTacQuotaThreshold" resultType="com.ecom.entity.QuotaThresholdTac">
+        SELECT * FROM quota_threshold_tac
+    </select>
+    <select id="getNodeQuotaThreshold" resultType="com.ecom.entity.QuotaThresholdNode">
+        SELECT * FROM quota_threshold_node
+    </select>
+    <select id="getCellQuotaThreshold" resultType="com.ecom.entity.QuotaThresholdCell">
+        SELECT * FROM quota_threshold_cell
+    </select>
+    <select id="getTacStatus" resultType="com.ecom.entity.BaseTac">
+        SELECT * FROM base_tac
+    </select>
+    <select id="getNodeStatus" resultType="com.ecom.entity.BaseNode">
+        SELECT * FROM base_node
+    </select>
+    <select id="getCellStatus" resultType="com.ecom.entity.BaseCell">
+        SELECT * FROM base_cell
+    </select>
+    <insert id="modTacStatus" parameterType="com.ecom.entity.BaseTac">
+         UPDATE base_tac
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER}
+            </if>
+        </set>
+        <where>
+            <if test="tac != null">
+                tac = #{tac,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </insert>
+    <insert id="modNodeStatus" parameterType="com.ecom.entity.BaseNode">
+         UPDATE base_node
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER}
+            </if>
+        </set>
+        <where>
+            <if test="nodeName != null">
+                node_name = #{nodeName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </insert>
+    <insert id="modCellStatus" parameterType="com.ecom.entity.BaseCell">
+         UPDATE base_cell
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER}
+            </if>
+        </set>
+        <where>
+            <if test="cellName != null">
+                cell_name = #{cellName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </insert>
+</mapper>

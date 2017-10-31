@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecom.dao.NodeNameSettingMapper">
+    <select id="checkNodeName" parameterType="com.ecom.entity.BaseStation" resultType="com.ecom.entity.BaseStation">
+        SELECT enb_name FROM base_station
+        WHERE enb_name = #{enbName}
+    </select>
+    <update id="modNodeName" parameterType="com.ecom.entity.BaseStation">
+        UPDATE base_station SET name = #{name} WHERE enb_name = #{enbName}
+    </update>
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecom.dao.Level2Mapper">
+    <resultMap id="BaseStationAndBaseNode" type="com.ecom.entity.BaseStation" >
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="no" jdbcType="INTEGER" property="no" />
+        <result column="area" jdbcType="VARCHAR" property="area" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="format" jdbcType="VARCHAR" property="format" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="enb_id" jdbcType="INTEGER" property="enbId" />
+        <result column="enb_name" jdbcType="VARCHAR" property="enbName" />
+        <result column="cell_name" jdbcType="VARCHAR" property="cellName" />
+        <result column="longitude" jdbcType="DECIMAL" property="longitude" />
+        <result column="latitude" jdbcType="DECIMAL" property="latitude" />
+        <result column="tac" jdbcType="VARCHAR" property="tac" />
+        <result column="swversion" jdbcType="VARCHAR" property="swversion" />
+        <result column="ip" jdbcType="VARCHAR" property="ip" />
+        <result column="mme" jdbcType="VARCHAR" property="mme" />
+        <result column="license_user" jdbcType="VARCHAR" property="licenseUser" />
+        <association property="baseNode" javaType="com.ecom.entity.BaseNode">
+            <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+            <result column="status" jdbcType="INTEGER" property="status" />
+            <result column="RRC_setup_succ_Rate" jdbcType="VARCHAR" property="rrcSetupSuccRate" />
+            <result column="S1_Setup_Succ_Rate" jdbcType="VARCHAR" property="s1SetupSuccRate" />
+            <result column="ERAB_Setup_Succ_Rate" jdbcType="VARCHAR" property="erabSetupSuccRate" />
+            <result column="paging_Succ_Rate" jdbcType="VARCHAR" property="pagingSuccRate" />
+            <result column="Erab_Drop_Rate" jdbcType="VARCHAR" property="erabDropRate" />
+            <result column="Within_System_HO_Succ_Rate" jdbcType="VARCHAR" property="withinSystemHoSuccRate" />
+            <result column="Cell_Utilization_Rate" jdbcType="VARCHAR" property="cellUtilizationRate" />
+            <result column="UL_PRB_Occupy_Rate" jdbcType="VARCHAR" property="ulPrbOccupyRate" />
+            <result column="DL_PRB_Occupy_Rate" jdbcType="VARCHAR" property="dlPrbOccupyRate" />
+            <result column="Dl_ThroughputRate_Mbps" jdbcType="VARCHAR" property="dlThroughputrateMbps" />
+            <result column="Ul_ThroughputRate_Mbps" jdbcType="VARCHAR" property="ulThroughputrateMbps" />
+            <result column="DL_User_Speed_Mbps" jdbcType="VARCHAR" property="dlUserSpeedMbps" />
+            <result column="UL_User_Speed_Mbps" jdbcType="VARCHAR" property="ulUserSpeedMbps" />
+            <result column="UE_SessionTime" jdbcType="VARCHAR" property="ueSessiontime" />
+            <result column="Drb_pmSessionTime" jdbcType="VARCHAR" property="drbPmsessiontime" />
+            <result column="DL_Active_User_Num" jdbcType="VARCHAR" property="dlActiveUserNum" />
+            <result column="UL_Active_User_Num" jdbcType="VARCHAR" property="ulActiveUserNum" />
+        </association>
+    </resultMap>
+    <select id="getStationByTac" parameterType="com.ecom.entity.BaseStation" resultMap="BaseStationAndBaseNode">
+        SELECT a.id,a.no,a.area,a.type,a.format,a.name,a.enb_id,a.enb_name,a.cell_name,a.longitude,a.latitude,a.swversion,a.ip,a.mme,a.license_user,b.*
+        FROM
+        (SELECT * FROM base_station
+        <where>
+            <if test="tac != null and tac != ''">
+                AND tac = #{tac}
+            </if>
+            <if test="area != null and area != ''">
+                AND area = #{area}
+            </if>
+        </where>
+        ) a LEFT JOIN base_node b ON a.enb_name = b.node_name ORDER BY b.status
+        <if test="order == null or order == ''">
+            DESC
+        </if>
+        <if test="order != null and order != ''">
+            ASC
+        </if>
+        ,b.node_name
+        <if test="order == null or order == ''">
+            DESC
+        </if>
+        <if test="order != null and order != ''">
+            ASC
+        </if>
+    </select>
+    <select id="getNodeQuotaThreshold" resultType="com.ecom.entity.QuotaThresholdNode">
+        SELECT * FROM quota_threshold_node
+    </select>
+    <select id="searchStation" parameterType="com.ecom.entity.BaseStation" resultMap="BaseStationAndBaseNode">
+        SELECT DISTINCT a.id,a.no,a.area,a.type,a.format,a.name,a.enb_id,a.enb_name,a.cell_name,a.longitude,a.latitude,a.swversion,a.ip,a.mme,a.license_user,b.*
+        FROM
+        (SELECT * FROM base_station
+        <where>
+            <if test="tac != null and tac != ''">
+                AND tac = #{tac}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND ( enb_name LIKE CONCAT('%',#{keyword},'%') OR enb_id LIKE CONCAT('%',#{keyword},'%') OR `name` LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+        </where>
+         ) a LEFT JOIN base_node b ON a.enb_name = b.node_name ORDER BY b.status DESC , b.node_name DESC
+    </select>
+
+</mapper>

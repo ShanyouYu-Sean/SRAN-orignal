@@ -1,0 +1,41 @@
+
+.btn{
+    height:35px;
+    width:180px;
+    /*	background-color:blue;*/
+    font-size:16px;
+    color:white;
+    margin-left:-80px;
+}
+.loginname{
+    padding-top:60px;
+
+}
+.loginpw{
+    padding-top:30px;
+}
+body{
+    background:url('../images/background_1.png');
+}
+.user{
+    text-align:center;
+    margin-top:6%;
+    background:url('../images/bakgrd_body.png');
+    height:300px;
+    width:600px;
+}
+input{
+
+    border:1px;
+    height:35px;
+    width:260px;
+    background-color:white;
+
+}
+.username{
+    background:url('../images/login_input_username_302_36.png');
+
+}
+.userpwd{
+    background:url('../images/login_input_password_302_36.png');
+}

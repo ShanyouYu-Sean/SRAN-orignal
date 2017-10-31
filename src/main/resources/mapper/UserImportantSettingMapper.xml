@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecom.dao.UserImportantSettingMapper">
+    <resultMap id="UserAndUserImportant" type="com.ecom.entity.User">
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="flag" jdbcType="INTEGER" property="flag" />
+        <result column="role_id" jdbcType="INTEGER" property="roleId" />
+        <association property="userImportant" javaType="com.ecom.entity.UserImportant">
+            <result column="user_id" property="userId" jdbcType="INTEGER" />
+            <result column="important_tac" property="importantTac" jdbcType="LONGVARCHAR" />
+            <result column="important_node" property="importantNode" jdbcType="LONGVARCHAR" />
+        </association>
+    </resultMap>
+    <resultMap id="UserAndRole" type="com.ecom.entity.User">
+        <id column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="flag" jdbcType="INTEGER" property="flag" />
+        <result column="role_id" jdbcType="INTEGER" property="roleId" />
+        <association property="role" javaType="com.ecom.entity.Role">
+            <id column="role_id" jdbcType="INTEGER" property="roleId" />
+            <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+            <result column="role_tac" jdbcType="LONGVARCHAR" property="roleTac" />
+            <result column="role_node" jdbcType="LONGVARCHAR" property="roleNode" />
+            <result column="role_cell" jdbcType="LONGVARCHAR" property="roleCell" />
+        </association>
+    </resultMap>
+    <select id="initUserImportant" resultMap="UserAndUserImportant">
+        SELECT a.user_id,a.user_name,b.important_tac,b.important_node
+        FROM `user` a LEFT JOIN user_important b ON a.user_id = b.user_id
+    </select>
+    <select id="getAllUserTac" parameterType="com.ecom.entity.User" resultMap="UserAndRole">
+        SELECT a.user_id,a.user_name,b.role_tac,b.role_name
+        FROM `user` a LEFT JOIN role b ON a.role_id = b.role_id
+        <where>
+            <if test="userId != null and userId != ''">
+                AND a.user_id = #{userId}
+            </if>
+        </where>
+    </select>
+    <select id="getNodeByTac" parameterType="com.ecom.entity.BaseStation" resultType="com.ecom.entity.BaseStation">
+        SELECT enb_name FROM base_station
+        <where>
+            <if test="tac != null and tac != ''">
+                AND tac IN (${tac})
+            </if>
+        </where>
+        ORDER BY enb_name
+    </select>
+    <select id="checkUserImportantExist" parameterType="com.ecom.entity.UserImportant" resultType="com.ecom.entity.UserImportant">
+        SELECT user_id FROM user_important
+        <where>
+            <if test="userId != null and userId != ''">
+                AND user_id = #{userId}
+            </if>
+        </where>
+    </select>
+    <insert id="addUserImportant" parameterType="com.ecom.entity.example.UserImportant" >
+        insert into user_important
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="importantTac != null" >
+                important_tac,
+            </if>
+            <if test="importantNode != null" >
+                important_node,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="importantTac != null" >
+                #{importantTac,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="importantNode != null" >
+                #{importantNode,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="modUserImportant" parameterType="com.ecom.entity.UserImportant">
+        update user_important
+        <set>
+            <if test="importantTac != null">
+                important_tac = #{importantTac,jdbcType=VARCHAR},
+            </if>
+            <if test="importantNode != null">
+                important_node = #{importantNode,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+</mapper>

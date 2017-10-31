@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecom.dao.RoleSettingMapper">
+    <insert id="addRole" parameterType="com.ecom.entity.Role" useGeneratedKeys="true" keyProperty="roleId">
+        insert into role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="roleTac != null">
+                role_tac,
+            </if>
+            <if test="roleNode != null">
+                role_node,
+            </if>
+            <if test="roleCell != null">
+                role_cell,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleTac != null">
+                #{roleTac,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="roleNode != null">
+                #{roleNode,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="roleCell != null">
+                #{roleCell,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="getDicTac" resultType="com.ecom.entity.BaseStation">
+        SELECT DISTINCT
+	        a.tac
+          FROM
+	        base_station a JOIN base_tac b ON a.tac = b.tac
+          WHERE
+	        a.tac IS NOT NULL
+        GROUP BY
+	        a.tac
+        ORDER BY
+	        a.tac ASC
+    </select>
+    <select id="getAllTac" resultType="com.ecom.entity.BaseStation">
+        SELECT DISTINCT
+	        a.tac
+        FROM
+	        base_station a JOIN base_tac b
+        WHERE
+	        a.tac IS NOT NULL
+        GROUP BY
+	        a.tac
+        ORDER BY
+	        a.tac ASC
+    </select>
+    <delete id="delRole" parameterType="com.ecom.entity.Role">
+        delete from role
+        where role_id = #{roleId,jdbcType=INTEGER}
+    </delete>
+    <update id="modRole" parameterType="com.ecom.entity.Role">
+        update role
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleTac != null">
+                role_tac = #{roleTac,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="roleNode != null">
+                role_node = #{roleNode,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="roleCell != null">
+                role_cell = #{roleCell,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=INTEGER}
+    </update>
+</mapper>

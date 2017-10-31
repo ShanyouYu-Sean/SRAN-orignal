@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css" media="screen">
+    <link href="../plugin/bootstrap/css/bootstrap-select.css" rel="stylesheet"  type="text/css" media="screen">
+    <link rel="stylesheet" href="../plugin/bootstrap/css/font-awesome.css" />
+    <link href="../css/setting.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../css/common.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../plugin/accordion/css/accordion.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="stylesheet" href="../css/buttons.css">
+</head>
+<body>
+<div id="bg">
+    <div  class="list-content" style="height: 100%;width: 100%" >
+        <ul class="accordion" id="user_list">
+            <li class="link_setting">
+                <!--<div  align="center">ID</div>-->
+                <div  align="center">用户名</div>
+                <div  align="center">登录名</div>
+                <div  align="center" style="width: 28% !important;">权限名</div>
+                <div  align="center">是否可用</div>
+                <div  align="center">操作</div>
+                <div  align="center">
+                    <a  onclick="user_add(this)" class="setting_add button button-primary button-pill button-tiny">添加</a>
+                    <!--<button onclick="user_add(this)" class="setting_add btn btn-primary" >添加</button>-->
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="page"></div>
+</div>
+<div class="setting_bg">
+    <div class="setting_content">
+        <div class="user_list">
+            <span style="display: none;" id="userid"></span>
+            <div class="item">
+                <div>用户名:</div>
+                <div><input id="username" type="text" /></div>
+            </div>
+            <div class="item">
+                <div>登录名:</div>
+                <div><input id="loginname" type="text" /></div>
+            </div>
+            <div class="item">
+                <div>密码:</div>
+                <div><input id="password" type="password" onkeyup="check_pass_len(this)" /></div>
+                <div id="warning" style="float: left;margin-left:27%;color: red"></div>
+            </div>
+            <div class="item">
+                <div>权限名:</div>
+                <div>
+                    <select id="roleid">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item">
+                <div>是否可用:</div>
+                <div><select id="flag"><option selected="selected" value="1">可用</option><option value="2">不可用</option></select></div>
+            </div>
+        </div>
+        <div class="setting_btn">
+            <span>
+                <a class="button button-primary button-rounded ">确定</a>
+            </span>
+            <span>
+                <a class="button button-primary button-rounded ">取消</a>
+            </span>
+        </div>
+        <div style="height: 15px;"></div>
+    </div>
+</div>
+<script src="../plugin/jquery/js/jquery-3.1.1.min.js" ></script>
+<script src="../plugin/jquery/js/jquery.page.js" ></script>
+<script src="../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugin/bootstrap/js/bootstrap-select.js"></script>
+<script src="../plugin/accordion/js/accordion.js"></script>
+<script src="../plugin/perfect-scrollbar/js/jquery.mousewheel.js"></script>
+<script src="../plugin/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript" src="../js/socket.js"></script>
+<script src="../js/userSetting.js"></script>
+</body>
+</html>

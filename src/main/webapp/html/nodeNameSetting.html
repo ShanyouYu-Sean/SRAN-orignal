@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css" media="screen">
+    <link href="../plugin/bootstrap/css/bootstrap-select.css" rel="stylesheet"  type="text/css" media="screen">
+    <link rel="stylesheet" href="../plugin/bootstrap/css/font-awesome.css" />
+    <link href="../css/setting.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../css/common.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../plugin/accordion/css/accordion.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="stylesheet" href="../css/buttons.css">
+</head>
+<body>
+<div class="main">
+    <form  id="uploadForm" action="../lte/modNodeName" method="post" enctype="multipart/form-data" >
+            <div>
+                <div style="height: 30px">
+                    <br/>
+                </div>
+                <div>
+                    <p style="color: #ffffff">请选择一个符合要求的txt格式的文件：</p>
+                    <input type="file" name="nodenames" class="nodenames" accept=".txt" style="color: #ffffff">
+                </div>
+                <div>
+                    <span class="upload">
+                        <a class="button button-primary button-rounded ">上传</a>
+                    </span>
+                </div>
+                </ul>
+            </div>
+    </form>
+</div>
+<script src="../plugin/jquery/js/jquery-3.1.1.min.js" ></script>
+<script src="../plugin/jquery/js/jquery.page.js" ></script>
+<script src="../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugin/bootstrap/js/bootstrap-select.js"></script>
+<script src="../plugin/accordion/js/accordion.js"></script>
+<script src="../plugin/perfect-scrollbar/js/jquery.mousewheel.js"></script>
+<script src="../plugin/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript" src="../js/socket.js"></script>
+<script src="../js/nodeNameSetting.js"></script>
+</body>
+</html>

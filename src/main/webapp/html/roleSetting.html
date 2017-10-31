@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css" media="screen">
+    <link href="../plugin/bootstrap/css/bootstrap-select.css" rel="stylesheet"  type="text/css" media="screen">
+    <link rel="stylesheet" href="../plugin/bootstrap/css/font-awesome.css" />
+    <link href="../css/setting.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../css/common.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../plugin/accordion/css/accordion.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="stylesheet" href="../css/buttons.css">
+</head>
+<body>
+<div id="bg">
+    <div  class="list-content" style="height: 100%;width: 100%" >
+        <ul class="accordion" id="role_list">
+            <li class="link_setting">
+                <!--<div  align="center">ID</div>-->
+                <div  align="center">权限名称</div>
+                <div style="width: 54% !important;"  align="center">权限TAC</div>
+                <div  align="center">操作</div>
+                <div  align="center">
+                    <a  onclick="role_add(this)" class="setting_add button button-primary button-pill button-tiny">添加</a>
+                    <!--<button onclick="role_add(this)" class="setting_add btn btn-primary">添加</button>-->
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="page"></div>
+</div>
+<div class="setting_bg">
+    <div class="setting_content">
+        <div class="role_list">
+            <span style="display: none;" id="role_id"></span>
+            <div class="item">
+                <div>权限名称:</div>
+                <div><input id="role_name" type="text" /></div>
+            </div>
+            <div class="item">
+                <div>TAC:</div>
+                <div class="tac_content">
+                    <a class="select_all">全选</a>&nbsp;&nbsp;<a class="un_select_all">反选</a>
+                    <BR />
+                </div>
+            </div>
+        </div>
+        <div class="setting_btn">
+             <span>
+                <a class="button button-primary button-rounded ">确定</a>
+            </span>
+            <span>
+                <a class="button button-primary button-rounded ">取消</a>
+            </span>
+        </div>
+        <div style="height: 15px;"></div>
+    </div>
+</div>
+<script src="../plugin/jquery/js/jquery-3.1.1.min.js" ></script>
+<script src="../plugin/jquery/js/jquery.page.js" ></script>
+<script src="../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugin/bootstrap/js/bootstrap-select.js"></script>
+<script src="../plugin/accordion/js/accordion.js"></script>
+<script src="../plugin/perfect-scrollbar/js/jquery.mousewheel.js"></script>
+<script src="../plugin/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript" src="../js/socket.js"></script>
+<script src="../js/roleSetting.js"></script>
+</body>
+</html>

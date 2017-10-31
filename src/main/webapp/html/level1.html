@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--移动设备禁用缩放功能-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>无线网络智能管控平台</title>
+    <link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css" media="screen">
+    <link href="../plugin/bootstrap/css/bootstrap-select.css" rel="stylesheet"  type="text/css" media="screen">
+    <link rel="stylesheet" href="../plugin/bootstrap/css/font-awesome.css" />
+    <link href="../plugin/accordion/css/accordion.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../plugin/search-style/css/style.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../plugin/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="stylesheet" href="../plugin/leaflet/css/leaflet.css" />
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../plugin/leaflet/css/leaflet.ie.css"/>
+    <link rel="stylesheet" href="../plugin/leaflet/css/locate-ie.css"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../plugin/leaflet/css/locate.css" />
+    <link rel="stylesheet" href="../plugin/leaflet/css/leaflet.awesome-markers.css" />
+    <link rel="stylesheet" href="../plugin/leaflet/css/MarkerCluster.css" />
+    <link rel="stylesheet" href="../plugin/leaflet/css/MarkerCluster.Default.css" />
+    <link href="../css/common.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+<body>
+<div id="outer" class="container-fluid background">
+    <div id="top" class="row vertical-container">
+                <div class="col-xs-9" style="color: #ffffff;"><div id="logo"></div><h3 style="margin-left: -14px;margin-top:26px;float: left">&nbsp;&nbsp;&nbsp;&nbsp;无线网络智能管控平台</h3></div>
+                        <div id="admin" class="col-xs-1" align="center">
+                            <div id="admin_img">
+                            </div>
+                            <div id="username" style="color: #ffffff;"></div>
+                        </div>
+                        <div id="setting" class="col-xs-1" align="center">
+                            <div id="setting_img">
+                            </div>
+                            <div style="color: #ffffff;font-size:11px">设置</div>
+                        </div>
+                        <div class="col-xs-4 vertical-container" align="center" width="100%">
+                            <div class="btn-group">
+                                <div style="float: left">
+                                <select id="sel" class="selectpicker" data-width="134px" multiple data-done-button="true">
+                                    <optgroup label="请选择范围" data-min-options="1" >
+                                        <option style="margin-left: -10px;width:130px;">LTE</option>
+                                        <option style="margin-left: -10px;width:130px;">WCDMA</option>
+                                    </optgroup>
+                                </select>
+                                </div>
+                                <button id="back" type="button" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                <button id="logout" type="button" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+    </div>
+    <div id="middle" class="row" >
+                <div id="left_img" class="col-xs-3">
+                    <div id="left_div">
+                        <div class="accordion">
+                            <div class="link_title">
+                                <div id="important_tac" class="important click" style='text-align:center;display: inline-block; width: 50%;border-right: 2px solid #ffffff'>重点关注TAC</div>
+                                <div id="important_node" class="important" style='text-align:center;display: inline-block; width: 48%'>重点关注NODE</div>
+                            </div>
+                        </div>
+                        <div id="left_tac">
+                            <ul id="tac" class="accordion" >
+
+                            </ul>
+                        </div>
+                        <div id="left_node" style="display: block">
+                            <ul id="node" class="accordion" >
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6" >
+                    <div id="map">
+
+                    </div>
+                </div>
+                <div id="right_img" class="col-xs-3">
+                    <div id="right_div">
+                        <div class="search d1">
+                            <!--<form>-->
+                                <input id="input_search" type="text" placeholder="搜索从这里开始..." onkeyup="input_search()">
+                                <button type="submit" onclick="input_search()"></button>
+                            <!--</form>-->
+                        </div>
+                        <div class="accordion" >
+                            <div class="link_title">
+                                <div style='display: inline-block; width: 60%;color: #ffffff'>TAC</div>
+                                <div style='display: inline-block; color: #ffffff'>KPI STATUS</div>
+                            </div>
+                        </div>
+                        <div id="right">
+                            <ul id="accordion" class="accordion">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <div id="footer" class="row vertical-container">
+        <div class="col-xs-12 center">
+            <div>故障等级：</div>
+            <div id="footer_level1"></div>
+            <div>一级&nbsp;&nbsp;</div>
+            <div id="footer_level2"></div>
+            <div>二级&nbsp;&nbsp;</div>
+            <div id="footer_level3"></div>
+            <div>三级&nbsp;&nbsp;</div>
+            <div id="footer_level4"></div>
+            <div>正常&nbsp;&nbsp;</div>
+            <div id="footer_level5"></div>
+            <div>无法获取</div>
+        </div>
+    </div>
+</div>
+<script src="../plugin/jquery/js/jquery-3.1.1.min.js" ></script>
+<script src="../js/setSize.js" ></script>
+<script src="../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugin/bootstrap/js/bootstrap-select.js"></script>
+<script src="../plugin/accordion/js/accordion.js"></script>
+<script src="../plugin/perfect-scrollbar/js/jquery.mousewheel.js"></script>
+<script src="../plugin/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="../plugin/leaflet/js/leaflet.js"></script>
+<script src="../plugin/leaflet/js/proj4js-compressed.js"></script>
+<script src="../plugin/leaflet/js/proj4leaflet.js"></script>
+<script src="../plugin/leaflet/js/locate.js" ></script>
+<script src="../plugin/leaflet/js/leaflet.awesome-markers.js" ></script>
+<script src="../plugin/leaflet/js/oms.min.js"></script>
+<script src="../plugin/leaflet/js/leaflet.markercluster.js"></script>
+<script src="../plugin/leaflet/js/leaflet.featuregroup.subgroup.js"></script>
+
+<script src="../js/beijingData.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript" src="../js/socket.js"></script>
+<script src="../js/level1.js"></script>
+
+</body>
+</html>

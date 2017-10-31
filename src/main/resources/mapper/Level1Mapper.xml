@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecom.dao.Level1Mapper">
+    <resultMap id="BaseStationAndBaseNode" type="com.ecom.entity.BaseStation" >
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="no" jdbcType="INTEGER" property="no" />
+        <result column="area" jdbcType="VARCHAR" property="area" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="format" jdbcType="VARCHAR" property="format" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="enb_id" jdbcType="INTEGER" property="enbId" />
+        <result column="enb_name" jdbcType="VARCHAR" property="enbName" />
+        <result column="cell_name" jdbcType="VARCHAR" property="cellName" />
+        <result column="longitude" jdbcType="DECIMAL" property="longitude" />
+        <result column="latitude" jdbcType="DECIMAL" property="latitude" />
+        <result column="tac" jdbcType="VARCHAR" property="tac" />
+        <result column="swversion" jdbcType="VARCHAR" property="swversion" />
+        <result column="ip" jdbcType="VARCHAR" property="ip" />
+        <result column="mme" jdbcType="VARCHAR" property="mme" />
+        <result column="license_user" jdbcType="VARCHAR" property="licenseUser" />
+        <association property="baseNode" javaType="com.ecom.entity.BaseNode">
+            <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+            <result column="status" jdbcType="INTEGER" property="status" />
+            <result column="RRC_setup_succ_Rate" jdbcType="VARCHAR" property="rrcSetupSuccRate" />
+            <result column="S1_Setup_Succ_Rate" jdbcType="VARCHAR" property="s1SetupSuccRate" />
+            <result column="ERAB_Setup_Succ_Rate" jdbcType="VARCHAR" property="erabSetupSuccRate" />
+            <result column="paging_Succ_Rate" jdbcType="VARCHAR" property="pagingSuccRate" />
+            <result column="Erab_Drop_Rate" jdbcType="VARCHAR" property="erabDropRate" />
+            <result column="Within_System_HO_Succ_Rate" jdbcType="VARCHAR" property="withinSystemHoSuccRate" />
+            <result column="Cell_Utilization_Rate" jdbcType="VARCHAR" property="cellUtilizationRate" />
+            <result column="UL_PRB_Occupy_Rate" jdbcType="VARCHAR" property="ulPrbOccupyRate" />
+            <result column="DL_PRB_Occupy_Rate" jdbcType="VARCHAR" property="dlPrbOccupyRate" />
+            <result column="Dl_ThroughputRate_Mbps" jdbcType="VARCHAR" property="dlThroughputrateMbps" />
+            <result column="Ul_ThroughputRate_Mbps" jdbcType="VARCHAR" property="ulThroughputrateMbps" />
+            <result column="DL_User_Speed_Mbps" jdbcType="VARCHAR" property="dlUserSpeedMbps" />
+            <result column="UL_User_Speed_Mbps" jdbcType="VARCHAR" property="ulUserSpeedMbps" />
+            <result column="UE_SessionTime" jdbcType="VARCHAR" property="ueSessiontime" />
+            <result column="Drb_pmSessionTime" jdbcType="VARCHAR" property="drbPmsessiontime" />
+            <result column="DL_Active_User_Num" jdbcType="VARCHAR" property="dlActiveUserNum" />
+            <result column="UL_Active_User_Num" jdbcType="VARCHAR" property="ulActiveUserNum" />
+        </association>
+    </resultMap>
+    <resultMap id="BaseTacAndBaseStation" type="com.ecom.entity.BaseTac">
+        <result column="tac" jdbcType="VARCHAR" property="tac" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="RRC_setup_succ_Rate" jdbcType="VARCHAR" property="rrcSetupSuccRate" />
+        <result column="S1_Setup_Succ_Rate" jdbcType="VARCHAR" property="s1SetupSuccRate" />
+        <result column="ERAB_Setup_Succ_Rate" jdbcType="VARCHAR" property="erabSetupSuccRate" />
+        <result column="paging_Succ_Rate" jdbcType="VARCHAR" property="pagingSuccRate" />
+        <result column="Erab_Drop_Rate" jdbcType="VARCHAR" property="erabDropRate" />
+        <result column="Within_System_HO_Succ_Rate" jdbcType="VARCHAR" property="withinSystemHoSuccRate" />
+        <result column="Cell_Utilization_Rate" jdbcType="VARCHAR" property="cellUtilizationRate" />
+        <result column="UL_PRB_Occupy_Rate" jdbcType="VARCHAR" property="ulPrbOccupyRate" />
+        <result column="DL_PRB_Occupy_Rate" jdbcType="VARCHAR" property="dlPrbOccupyRate" />
+        <result column="Dl_ThroughputRate_Mbps" jdbcType="VARCHAR" property="dlThroughputrateMbps" />
+        <result column="Ul_ThroughputRate_Mbps" jdbcType="VARCHAR" property="ulThroughputrateMbps" />
+        <result column="DL_User_Speed_Mbps" jdbcType="VARCHAR" property="dlUserSpeedMbps" />
+        <result column="UL_User_Speed_Mbps" jdbcType="VARCHAR" property="ulUserSpeedMbps" />
+        <result column="UE_SessionTime" jdbcType="VARCHAR" property="ueSessiontime" />
+        <result column="Drb_pmSessionTime" jdbcType="VARCHAR" property="drbPmsessiontime" />
+        <result column="DL_Active_User_Num" jdbcType="VARCHAR" property="dlActiveUserNum" />
+        <result column="UL_Active_User_Num" jdbcType="VARCHAR" property="ulActiveUserNum" />
+        <collection property="baseStationList" ofType="com.ecom.entity.BaseStation">
+            <id column="id" jdbcType="INTEGER" property="id" />
+            <result column="no" jdbcType="INTEGER" property="no" />
+            <result column="area" jdbcType="VARCHAR" property="area" />
+            <result column="type" jdbcType="VARCHAR" property="type" />
+            <result column="format" jdbcType="VARCHAR" property="format" />
+            <result column="name" jdbcType="VARCHAR" property="name" />
+            <result column="enb_id" jdbcType="INTEGER" property="enbId" />
+            <result column="enb_name" jdbcType="VARCHAR" property="enbName" />
+            <result column="cell_name" jdbcType="VARCHAR" property="cellName" />
+            <result column="longitude" jdbcType="DECIMAL" property="longitude" />
+            <result column="latitude" jdbcType="DECIMAL" property="latitude" />
+            <result column="tac" jdbcType="VARCHAR" property="tac" />
+            <result column="swversion" jdbcType="VARCHAR" property="swversion" />
+            <result column="ip" jdbcType="VARCHAR" property="ip" />
+            <result column="mme" jdbcType="VARCHAR" property="mme" />
+            <result column="license_user" jdbcType="VARCHAR" property="licenseUser" />
+        </collection>
+    </resultMap>
+    <resultMap id="UserAndRole" type="com.ecom.entity.Role">
+        <id column="role_id" jdbcType="INTEGER" property="roleId" />
+        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+        <result column="role_tac" jdbcType="VARCHAR" property="roleTac" />
+        <result column="role_node" jdbcType="VARCHAR" property="roleNode" />
+        <result column="role_cell" jdbcType="INTEGER" property="roleCell" />
+        <collection property="userList" ofType="com.ecom.entity.User">
+            <id column="user_id" property="userId"/>
+            <result column="user_name" property="userName"/>
+            <result column="login_name" property="loginName"/>
+            <result column="password" property="password"/>
+            <result column="flag" property="flag"/>
+        </collection>
+    </resultMap>
+    <resultMap id="UserAndRole3g" type="com.ecom.entity.Role3g">
+        <id column="role_id" jdbcType="INTEGER" property="roleId" />
+        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+        <result column="role_rnc" jdbcType="VARCHAR" property="roleRnc" />
+        <result column="role_node" jdbcType="VARCHAR" property="roleNode" />
+        <result column="role_cell" jdbcType="INTEGER" property="roleCell" />
+        <collection property="userList" ofType="com.ecom.entity.User">
+            <id column="user_id" property="userId"/>
+            <result column="user_name" property="userName"/>
+            <result column="login_name" property="loginName"/>
+            <result column="password" property="password"/>
+            <result column="flag" property="flag"/>
+        </collection>
+    </resultMap>
+    <resultMap id="BaseStationAndBaseTac" type="com.ecom.entity.BaseStation">
+        <!--<id column="id" property="id" jdbcType="INTEGER" />-->
+        <result column="no" property="no" jdbcType="INTEGER" />
+        <result column="area" property="area" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+        <result column="format" property="format" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="enb_id" property="enbId" jdbcType="INTEGER" />
+        <result column="enb_name" property="enbName" jdbcType="VARCHAR" />
+        <result column="cell_name" property="cellName" jdbcType="VARCHAR" />
+        <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+        <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+        <result column="tac" property="tac" jdbcType="VARCHAR" />
+        <result column="swversion" property="swversion" jdbcType="VARCHAR" />
+        <result column="ip" property="ip" jdbcType="VARCHAR" />
+        <result column="mme" property="mme" jdbcType="VARCHAR" />
+        <result column="license_user" property="licenseUser" jdbcType="VARCHAR" />
+        <association property="baseTac" javaType="com.ecom.entity.BaseTac">
+            <result column="tac" property="tac" jdbcType="VARCHAR" />
+            <result column="status" property="status" jdbcType="INTEGER" />
+            <result column="RRC_setup_succ_Rate" property="rrcSetupSuccRate" jdbcType="VARCHAR" />
+            <result column="S1_Setup_Succ_Rate" property="s1SetupSuccRate" jdbcType="VARCHAR" />
+            <result column="ERAB_Setup_Succ_Rate" property="erabSetupSuccRate" jdbcType="VARCHAR" />
+            <result column="paging_Succ_Rate" property="pagingSuccRate" jdbcType="VARCHAR" />
+            <result column="Erab_Drop_Rate" property="erabDropRate" jdbcType="VARCHAR" />
+            <result column="Within_System_HO_Succ_Rate" property="withinSystemHoSuccRate" jdbcType="VARCHAR" />
+            <result column="Cell_Utilization_Rate" property="cellUtilizationRate" jdbcType="VARCHAR" />
+            <result column="UL_PRB_Occupy_Rate" property="ulPrbOccupyRate" jdbcType="VARCHAR" />
+            <result column="DL_PRB_Occupy_Rate" property="dlPrbOccupyRate" jdbcType="VARCHAR" />
+            <result column="Dl_ThroughputRate_Mbps" property="dlThroughputrateMbps" jdbcType="VARCHAR" />
+            <result column="Ul_ThroughputRate_Mbps" property="ulThroughputrateMbps" jdbcType="VARCHAR" />
+            <result column="DL_User_Speed_Mbps" property="dlUserSpeedMbps" jdbcType="VARCHAR" />
+            <result column="UL_User_Speed_Mbps" property="ulUserSpeedMbps" jdbcType="VARCHAR" />
+            <result column="UE_SessionTime" property="ueSessiontime" jdbcType="VARCHAR" />
+            <result column="Drb_pmSessionTime" property="drbPmsessiontime" jdbcType="VARCHAR" />
+            <result column="DL_Active_User_Num" property="dlActiveUserNum" jdbcType="VARCHAR" />
+            <result column="UL_Active_User_Num" property="ulActiveUserNum" jdbcType="VARCHAR" />
+        </association>
+    </resultMap>
+    <resultMap id="BaseStationAndBaseRnc" type="com.ecom.entity.BaseStation3g">
+        <!--<id column="id" property="id" jdbcType="INTEGER" />-->
+        <result column="rnc" property="rnc" jdbcType="VARCHAR" />
+        <result column="enb_name" property="enbName" jdbcType="VARCHAR" />
+        <result column="rbs_id" property="rbsId" jdbcType="INTEGER" />
+        <result column="ip" property="ip" jdbcType="VARCHAR" />
+        <result column="lac" property="lac" jdbcType="INTEGER" />
+        <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+        <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+        <association property="baseRnc3g" javaType="com.ecom.entity.BaseRnc3g">
+            <result column="rnc" jdbcType="VARCHAR" property="rnc" />
+            <result column="status" jdbcType="INTEGER" property="status" />
+            <result column="CS_Iu_Sig_Suc" jdbcType="VARCHAR" property="csIuSigSuc" />
+            <result column="PS_Iu_Sig_Suc" jdbcType="VARCHAR" property="psIuSigSuc" />
+            <result column="Rrc_Suc" jdbcType="VARCHAR" property="rrcSuc" />
+            <result column="PS_Rrc_Suc_Rate" jdbcType="VARCHAR" property="psRrcSucRate" />
+            <result column="Spch_Rrc_Suc_Rate" jdbcType="VARCHAR" property="spchRrcSucRate" />
+            <result column="Spch_Rab_Suc" jdbcType="VARCHAR" property="spchRabSuc" />
+            <result column="PS_Rab_Succ" jdbcType="VARCHAR" property="psRabSucc" />
+            <result column="SHO_Success" jdbcType="VARCHAR" property="shoSuccess" />
+            <result column="Spch_Drop" jdbcType="VARCHAR" property="spchDrop" />
+            <result column="PS_Drop" jdbcType="VARCHAR" property="psDrop" />
+        </association>
+    </resultMap>
+    <select id="getGroupStationByTac" parameterType="com.ecom.entity.BaseTac" resultType="com.ecom.entity.BaseTac">
+        SELECT * FROM base_tac
+        <where>
+            <if test="tac != null and tac != ''">
+                AND tac IN (${tac})
+            </if>
+        </where>
+         ORDER BY `status` DESC , tac ASC
+    </select>
+    <select id="searchGroupStation" parameterType="com.ecom.entity.BaseStation" resultMap="BaseTacAndBaseStation">
+        SELECT DISTINCT
+        a.*, b.enb_id,
+        b.enb_name
+        FROM
+          (SELECT * FROM base_station
+            <where>
+              <if test="tac != null and tac != ''">
+                  AND tac IN (${tac})
+              </if>
+              <if test="keyword != null and keyword != ''">
+                  AND (tac LIKE CONCAT('%',#{keyword},'%') OR enb_id LIKE CONCAT('%',#{keyword},'%') OR enb_name LIKE CONCAT('%',#{keyword},'%') OR `name` LIKE CONCAT('%',#{keyword},'%'))
+              </if>
+          </where>
+          ) b
+        JOIN base_tac a ON a.tac = b.tac
+        ORDER BY
+        a.`status` DESC,
+        a.tac ASC
+    </select>
+    <select id="getUserRoleTac" parameterType="com.ecom.entity.User" resultMap="UserAndRole">
+        SELECT role_tac FROM user a LEFT JOIN role b ON a.role_id = b.role_id WHERE a.user_id = #{userId}
+    </select>
+    <select id="getUserRoleRnc" parameterType="com.ecom.entity.User" resultMap="UserAndRole3g">
+        SELECT role_rnc FROM user a LEFT JOIN role_3g b ON a.role_3g_id = b.role_id WHERE a.user_id = #{userId}
+    </select>
+    <select id="getUpdateTime" resultType="com.ecom.entity.Tac">
+        SELECT time FROM tac ORDER BY id DESC LIMIT 1
+    </select>
+    <select id="getTacQuotaThreshold" resultType="com.ecom.entity.QuotaThresholdTac">
+        SELECT * FROM quota_threshold_tac
+    </select>
+    <select id="getTacBaseStation" resultType="com.ecom.entity.BaseStation">
+        SELECT tac,latitude,longitude FROM base_station
+    </select>
+    <select id="getBaseStationByTac" parameterType="com.ecom.entity.BaseStation" resultMap="BaseStationAndBaseTac">
+        SELECT a.latitude,a.longitude,a.tac,b.`status`
+        FROM
+        (SELECT * FROM base_station
+        <where>
+            <if test="tac != null and tac != ''">
+                AND tac IN (${tac})
+            </if>
+        </where>
+        ) a
+       JOIN base_tac b ON a.tac = b.tac
+        ORDER BY
+        b.`status` DESC,
+        a.tac ASC
+    </select>
+    <select id="getBaseStation3gByRnc" parameterType="com.ecom.entity.BaseStation3g" resultMap="BaseStationAndBaseRnc">
+        SELECT a.latitude,a.longitude,a.rnc,b.`status`
+        FROM
+        (SELECT * FROM base_station_3g
+        <where>
+            <if test="tac != null and tac != ''">
+                AND rnc IN (${rnc})
+            </if>
+        </where>
+        ) a
+        JOIN base_rnc_3g b ON a.rnc = b.rnc
+        ORDER BY
+        b.`status` DESC,
+        a.rnc ASC
+    </select>
+    <select id="getMaxStationByTac" parameterType="com.ecom.entity.BaseStation" resultType="Integer">
+        <!--SELECT
+          MAX(c)
+        FROM
+        (
+            SELECT
+              COUNT(*) AS c
+            FROM
+                (SELECT * FROM base_station
+                    <where>
+                        <if test="tac != null and tac != ''">
+                            AND tac IN (${tac})
+                        </if>
+                    </where>
+                  ) a
+            JOIN base_tac b ON a.tac = b.tac
+            GROUP BY
+              a.tac
+        ) d-->
+        <!--SELECT COUNT(*)
+        FROM
+        (SELECT * FROM base_station
+        <where>
+            <if test="tac != null and tac != ''">
+                AND tac IN (${tac})
+            </if>
+        </where>
+        ) a
+        JOIN base_tac b ON a.tac = b.tac-->
+        SELECT COUNT(*)
+        FROM
+        base_station
+    </select>
+    <select id="getUserImportant" parameterType="com.ecom.entity.UserImportant" resultType="com.ecom.entity.UserImportant">
+        SELECT a.user_id,a.user_name,b.important_tac,b.important_node
+        FROM `user` a LEFT JOIN user_important b ON a.user_id = b.user_id WHERE a.user_id = #{userId}
+    </select>
+    <select id="getImportantNode" parameterType="com.ecom.entity.BaseStation" resultMap="BaseStationAndBaseNode">
+        SELECT a.id,a.no,a.area,a.type,a.format,a.name,a.enb_id,a.enb_name,a.cell_name,a.longitude,a.latitude,a.swversion,a.ip,a.mme,a.license_user,b.*
+        FROM
+        (SELECT * FROM base_station
+        <where>
+            <if test="enbName != null and enbName != ''">
+                AND enb_name IN (${enbName})
+            </if>
+        </where>
+        ) a LEFT JOIN base_node b ON a.enb_name = b.node_name ORDER BY b.status
+        <if test="order == null or order == ''">
+            DESC
+        </if>
+        <if test="order != null and order != ''">
+            ASC
+        </if>
+        ,b.node_name
+        <if test="order == null or order == ''">
+            DESC
+        </if>
+        <if test="order != null and order != ''">
+            ASC
+        </if>
+    </select>
+    </mapper>

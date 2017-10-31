@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css" media="screen">
+    <link href="../plugin/bootstrap/css/bootstrap-select.css" rel="stylesheet"  type="text/css" media="screen">
+    <link rel="stylesheet" href="../plugin/bootstrap/css/font-awesome.css" />
+    <link href="../css/setting.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../css/common.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../plugin/accordion/css/accordion.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="stylesheet" href="../css/buttons.css">
+</head>
+<body>
+<div id="bg">
+    <div  class="list-content" style="height: 100%;width: 100%" >
+        <ul class="accordion" id="important_list">
+            <li class="link_setting">
+                <div  align="center">用户名称</div>
+                <div style="width: 36% !important;"  align="center">重点关注TAC</div>
+                <div style="width: 36% !important;"  align="center">重点关注NODE</div>
+                <div align="center">操作</div>
+            </li>
+        </ul>
+    </div>
+    <div class="page"></div>
+</div>
+<div class="setting_bg">
+    <div class="setting_content">
+        <div class="important_list">
+            <span style="display: none;" id="user_id"></span>
+            <div class="item">
+                <div>权限名称:</div>
+                <div><input id="role_name" type="text" disabled="disabled"/></div>
+            </div>
+            <div class="item">
+                <div>重点关注TAC:</div>
+                <div class="tac_content">
+                    <a class="select_all select_all_tac">全选</a>&nbsp;&nbsp;<a class="un_select_all un_select_all_tac">反选</a>
+                    <BR />
+                </div>
+            </div>
+            <div class="item">
+                <div>重点关注NODE:</div>
+                <div id="note" style="color: #FFFFFF">请先勾选想要重点关注的TAC</div>
+                <div class="node_content" style="display: none; ">
+                    <a class="select_all select_all_node">全选</a>&nbsp;&nbsp;<a class="un_select_all un_select_all_node">反选</a>
+                    <BR id="br"/>
+                </div>
+            </div>
+        </div>
+        <div class="setting_btn">
+             <span>
+                <a class="button button-primary button-rounded ">确定</a>
+            </span>
+            <span>
+                <a class="button button-primary button-rounded ">取消</a>
+            </span>
+        </div>
+        <div style="height: 15px;"></div>
+    </div>
+</div>
+<script src="../plugin/jquery/js/jquery-3.1.1.min.js" ></script>
+<script src="../plugin/jquery/js/jquery.page.js" ></script>
+<script src="../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugin/bootstrap/js/bootstrap-select.js"></script>
+<script src="../plugin/accordion/js/accordion.js"></script>
+<script src="../plugin/perfect-scrollbar/js/jquery.mousewheel.js"></script>
+<script src="../plugin/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript" src="../js/socket.js"></script>
+<script src="../js/userImportantSetting.js"></script>
+</body>
+</html>
